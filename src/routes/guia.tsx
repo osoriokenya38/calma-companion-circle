@@ -7,8 +7,6 @@ export const Route = createFileRoute("/guia")({
       { name: "description", content: "Colores, tipografías y recomendaciones de diseño para Calma." },
       { property: "og:title", content: "Guía de diseño — Calma" },
       { property: "og:description", content: "Colores, tipografías y recomendaciones de diseño para Calma." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Guia,

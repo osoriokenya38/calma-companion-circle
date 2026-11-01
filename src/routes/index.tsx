@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { CalmaIntro } from "@/components/calma-intro";
+import hero from "@/assets/hero-calma.jpg";
 import s1 from "@/assets/slide-1.jpg";
 import s2 from "@/assets/slide-2.jpg";
 import s3 from "@/assets/slide-3.jpg";
@@ -12,8 +12,6 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Registra tu ánimo, respira con calma y encuentra contactos de apoyo." },
       { property: "og:title", content: "Calma — Respira, conecta y pide ayuda" },
       { property: "og:description", content: "Registra tu ánimo, respira con calma y encuentra contactos de apoyo." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
@@ -123,11 +121,10 @@ function Index() {
         </nav>
       </header>
 
-      <CalmaIntro />
-
-      <section id="bienestar" className="mx-auto max-w-6xl px-6 py-16">
+      <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 pb-20 pt-8 md:grid-cols-2">
         <div>
-          <h2 className="text-4xl leading-tight text-plum-deep">¿Cómo te sientes <em className="text-mauve">hoy</em>?</h2>
+          <p className="mb-4 inline-block rounded-full bg-sand px-4 py-1 text-sm text-primary">Hola, aquí estás a salvo</p>
+          <h1 className="text-5xl leading-tight text-plum-deep md:text-6xl">¿Cómo te sientes <em className="text-mauve">hoy</em>?</h1>
           <p className="mt-5 max-w-md text-lg text-muted-foreground">Un espacio tranquilo para escucharte, respirar y encontrar a quien pueda acompañarte.</p>
           <div className="mt-8 flex flex-wrap gap-2">
             {moods.map((m, i) => (
@@ -144,6 +141,10 @@ function Index() {
           {mood !== null && (
             <p className="mt-6 max-w-md rounded-2xl bg-warm p-5 text-accent-foreground shadow-soft animate-in fade-in slide-in-from-bottom-2">{moods[mood]?.msg}</p>
           )}
+        </div>
+        <div className="relative">
+          <div className="absolute -left-6 -top-6 h-32 w-32 rounded-full bg-peach/60 blur-2xl" />
+          <img src={hero} alt="Persona descansando en un paisaje tranquilo" className="relative aspect-[5/4] w-full rounded-[2.5rem] object-cover shadow-soft" width={1280} height={1024} />
         </div>
       </section>
 
