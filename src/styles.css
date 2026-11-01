@@ -100,3 +100,28 @@
   50% { transform: scale(1.1); opacity: 1; }
 }
 @utility animate-breathe { animation: breathe 8s ease-in-out infinite; }
+
+.dark {
+  --background: oklch(0.17 0.06 295);
+  --foreground: oklch(0.94 0.02 70);
+  --card: oklch(0.22 0.08 296);
+  --card-foreground: oklch(0.94 0.02 70);
+  --popover: var(--card);
+  --popover-foreground: oklch(0.94 0.02 70);
+  --primary: oklch(0.78 0.06 320);
+  --primary-foreground: oklch(0.17 0.06 295);
+  --secondary: oklch(0.27 0.08 298);
+  --secondary-foreground: oklch(0.94 0.02 70);
+  --muted: oklch(0.25 0.07 296);
+  --muted-foreground: oklch(0.78 0.04 310);
+  --accent: oklch(0.8 0.07 50);
+  --accent-foreground: oklch(0.2 0.07 295);
+  --border: oklch(0.3 0.07 298);
+  --input: oklch(0.3 0.07 298);
+  --sand: oklch(0.28 0.08 298);
+  --plum-deep: oklch(0.94 0.02 70);
+  --gradient-warm: linear-gradient(135deg, oklch(0.8 0.07 50), oklch(0.75 0.06 30));
+  --gradient-dusk: linear-gradient(150deg, oklch(0.3 0.1 300), oklch(0.22 0.09 295) 50%, oklch(0.14 0.06 295));
+  --shadow-soft: 0 18px 40px -20px oklch(0 0 0 / 0.6);
+}
+html { transition: background-color .3s; }
