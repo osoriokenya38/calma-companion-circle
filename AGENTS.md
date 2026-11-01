@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the introductory carousel and module shortcuts in a dedicated browser-safe component, separate from the existing mood, facts, breathing, and contact sections, so updates to the introduction do not change those experiences.
