@@ -41,7 +41,7 @@ function Breathing() {
     <div className="relative mx-auto flex h-56 w-56 items-center justify-center">
       <div className="absolute inset-0 rounded-full bg-mauve/40 animate-breathe" />
       <div className="absolute inset-6 rounded-full bg-mauve/50 animate-breathe" />
-      <span className="relative font-display text-2xl text-primary-foreground">{phase}</span>
+      <span className="relative font-display text-2xl text-cream">{phase}</span>
     </div>
   );
 }
@@ -150,11 +150,11 @@ function Index() {
 
       <Carousel />
 
-      <section id="respira" className="bg-dusk py-20 text-primary-foreground">
+      <section id="respira" className="bg-dusk py-20 text-cream">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-2">
           <div>
             <h2 className="text-4xl">Respira conmigo</h2>
-            <p className="mt-4 max-w-md text-primary-foreground/75">Sigue el círculo: inhala mientras crece, exhala mientras se hace pequeño. Un minuto basta.</p>
+            <p className="mt-4 max-w-md text-cream/75">Sigue el círculo: inhala mientras crece, exhala mientras se hace pequeño. Un minuto basta.</p>
           </div>
           <Breathing />
         </div>
