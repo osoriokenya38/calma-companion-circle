@@ -74,7 +74,7 @@ function Index() {
             ))}
           </div>
           {mood !== null && (
-            <p className="mt-6 max-w-md rounded-2xl bg-warm p-5 text-accent-foreground shadow-soft animate-in fade-in slide-in-from-bottom-2">{moods[mood].msg}</p>
+            <p className="mt-6 max-w-md rounded-2xl bg-warm p-5 text-accent-foreground shadow-soft animate-in fade-in slide-in-from-bottom-2">{moods[mood]?.msg}</p>
           )}
         </div>
         <div className="relative">
