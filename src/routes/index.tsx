@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import hero from "@/assets/hero-calma.jpg";
+import s1 from "@/assets/slide-1.jpg";
+import s2 from "@/assets/slide-2.jpg";
+import s3 from "@/assets/slide-3.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,6 +46,67 @@ function Breathing() {
   );
 }
 
+const slides = [
+  { img: s1, t: "Pedir ayuda es un acto de valentía", d: "1 de cada 4 personas vivirá un problema de salud mental en algún momento de su vida. No estás sola, no estás solo.", a: "Mujer con una taza de té junto a la ventana al atardecer" },
+  { img: s2, t: "Tu red de apoyo importa", d: "Hablar unos minutos con alguien de confianza reduce el estrés y la sensación de soledad.", a: "Dos amigas conversando en un sofá" },
+  { img: s3, t: "Respira, muévete, descansa", d: "Caminar 20 minutos al aire libre y dormir bien mejoran el ánimo de forma comprobada.", a: "Mujer caminando entre lavandas al atardecer" },
+];
+
+function Carousel() {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setI((v) => (v + 1) % slides.length), 7000);
+    return () => clearInterval(id);
+  }, [i]);
+  const go = (d: number) => setI((v) => (v + d + slides.length) % slides.length);
+  return (
+    <section className="mx-auto max-w-6xl px-6 pb-20" aria-roledescription="carrusel" aria-label="Datos importantes">
+      <h2 className="mb-6 text-4xl text-plum-deep">Datos que vale la pena saber</h2>
+      <div className="relative overflow-hidden rounded-[2.5rem] shadow-soft">
+        <div className="flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${i * 100}%)` }}>
+          {slides.map((s, k) => (
+            <div key={s.t} className="relative w-full shrink-0" aria-hidden={k !== i}>
+              <img src={s.img} alt={s.a} loading="lazy" width={1280} height={768} className="aspect-[16/10] w-full object-cover md:aspect-[16/7]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-night/85 via-night/30 to-transparent" />
+              <div className="absolute bottom-0 max-w-xl p-8 text-cream md:p-12">
+                <h3 className="text-3xl md:text-4xl">{s.t}</h3>
+                <p className="mt-3 text-cream/85">{s.d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <button aria-label="Anterior" onClick={() => go(-1)} className="absolute left-4 top-1/2 h-11 w-11 -translate-y-1/2 rounded-full bg-cream/80 text-xl text-night backdrop-blur hover:bg-cream">‹</button>
+        <button aria-label="Siguiente" onClick={() => go(1)} className="absolute right-4 top-1/2 h-11 w-11 -translate-y-1/2 rounded-full bg-cream/80 text-xl text-night backdrop-blur hover:bg-cream">›</button>
+        <div className="absolute bottom-5 right-8 flex gap-2">
+          {slides.map((s, k) => (
+            <button key={s.t} aria-label={`Ir al dato ${k + 1}`} onClick={() => setI(k)} className={`h-2.5 rounded-full transition-all ${k === i ? "w-8 bg-cream" : "w-2.5 bg-cream/50"}`} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ThemeToggle() {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const d = localStorage.getItem("calma-theme") === "dark";
+    setDark(d);
+    document.documentElement.classList.toggle("dark", d);
+  }, []);
+  const toggle = () => {
+    const d = !dark;
+    setDark(d);
+    document.documentElement.classList.toggle("dark", d);
+    localStorage.setItem("calma-theme", d ? "dark" : "light");
+  };
+  return (
+    <button onClick={toggle} aria-label={dark ? "Activar modo claro" : "Activar modo oscuro"} className="flex h-10 w-10 items-center justify-center rounded-full border bg-card text-lg transition hover:-translate-y-0.5">
+      {dark ? "☀️" : "🌙"}
+    </button>
+  );
+}
+
 function Index() {
   const [mood, setMood] = useState<number | null>(null);
   return (
@@ -53,6 +117,7 @@ function Index() {
           <a href="#respira" className="hover:text-primary">Respira</a>
           <a href="#apoyo" className="hover:text-primary">Apoyo</a>
           <Link to="/guia" className="hover:text-primary">Guía de diseño</Link>
+          <ThemeToggle />
         </nav>
       </header>
 
@@ -82,6 +147,8 @@ function Index() {
           <img src={hero} alt="Persona descansando en un paisaje tranquilo" className="relative aspect-[5/4] w-full rounded-[2.5rem] object-cover shadow-soft" width={1280} height={1024} />
         </div>
       </section>
+
+      <Carousel />
 
       <section id="respira" className="bg-dusk py-20 text-primary-foreground">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-2">
