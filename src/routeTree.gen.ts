@@ -10,11 +10,27 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApoyoRouteImport } from './routes/apoyo'
+import { Route as CuentaRouteImport } from './routes/cuenta'
 import { Route as GuiaRouteImport } from './routes/guia'
+import { Route as RedRouteImport } from './routes/red'
+import { Route as RespiraRouteImport } from './routes/respira'
+import { Route as SalidaRouteImport } from './routes/salida'
+import { Route as ApoyoNivelRouteImport } from './routes/apoyo.$nivel'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApoyoRoute = ApoyoRouteImport.update({
+  id: '/apoyo',
+  path: '/apoyo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CuentaRoute = CuentaRouteImport.update({
+  id: '/cuenta',
+  path: '/cuenta',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GuiaRoute = GuiaRouteImport.update({
@@ -22,31 +38,99 @@ const GuiaRoute = GuiaRouteImport.update({
   path: '/guia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RedRoute = RedRouteImport.update({
+  id: '/red',
+  path: '/red',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RespiraRoute = RespiraRouteImport.update({
+  id: '/respira',
+  path: '/respira',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SalidaRoute = SalidaRouteImport.update({
+  id: '/salida',
+  path: '/salida',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApoyoNivelRoute = ApoyoNivelRouteImport.update({
+  id: '/$nivel',
+  path: '/$nivel',
+  getParentRoute: () => ApoyoRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/apoyo': typeof ApoyoRouteWithChildren
+  '/cuenta': typeof CuentaRoute
   '/guia': typeof GuiaRoute
+  '/red': typeof RedRoute
+  '/respira': typeof RespiraRoute
+  '/salida': typeof SalidaRoute
+  '/apoyo/$nivel': typeof ApoyoNivelRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/apoyo': typeof ApoyoRouteWithChildren
+  '/cuenta': typeof CuentaRoute
   '/guia': typeof GuiaRoute
+  '/red': typeof RedRoute
+  '/respira': typeof RespiraRoute
+  '/salida': typeof SalidaRoute
+  '/apoyo/$nivel': typeof ApoyoNivelRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/apoyo': typeof ApoyoRouteWithChildren
+  '/cuenta': typeof CuentaRoute
   '/guia': typeof GuiaRoute
+  '/red': typeof RedRoute
+  '/respira': typeof RespiraRoute
+  '/salida': typeof SalidaRoute
+  '/apoyo/$nivel': typeof ApoyoNivelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/guia'
+  fullPaths:
+    | '/'
+    | '/apoyo'
+    | '/cuenta'
+    | '/guia'
+    | '/red'
+    | '/respira'
+    | '/salida'
+    | '/apoyo/$nivel'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/guia'
-  id: '__root__' | '/' | '/guia'
+  to:
+    | '/'
+    | '/apoyo'
+    | '/cuenta'
+    | '/guia'
+    | '/red'
+    | '/respira'
+    | '/salida'
+    | '/apoyo/$nivel'
+  id:
+    | '__root__'
+    | '/'
+    | '/apoyo'
+    | '/cuenta'
+    | '/guia'
+    | '/red'
+    | '/respira'
+    | '/salida'
+    | '/apoyo/$nivel'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApoyoRoute: typeof ApoyoRouteWithChildren
+  CuentaRoute: typeof CuentaRoute
   GuiaRoute: typeof GuiaRoute
+  RedRoute: typeof RedRoute
+  RespiraRoute: typeof RespiraRoute
+  SalidaRoute: typeof SalidaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +142,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/apoyo': {
+      id: '/apoyo'
+      path: '/apoyo'
+      fullPath: '/apoyo'
+      preLoaderRoute: typeof ApoyoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cuenta': {
+      id: '/cuenta'
+      path: '/cuenta'
+      fullPath: '/cuenta'
+      preLoaderRoute: typeof CuentaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/guia': {
       id: '/guia'
       path: '/guia'
@@ -65,12 +163,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuiaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/red': {
+      id: '/red'
+      path: '/red'
+      fullPath: '/red'
+      preLoaderRoute: typeof RedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/respira': {
+      id: '/respira'
+      path: '/respira'
+      fullPath: '/respira'
+      preLoaderRoute: typeof RespiraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/salida': {
+      id: '/salida'
+      path: '/salida'
+      fullPath: '/salida'
+      preLoaderRoute: typeof SalidaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apoyo/$nivel': {
+      id: '/apoyo/$nivel'
+      path: '/$nivel'
+      fullPath: '/apoyo/$nivel'
+      preLoaderRoute: typeof ApoyoNivelRouteImport
+      parentRoute: typeof ApoyoRoute
+    }
   }
 }
 
+interface ApoyoRouteChildren {
+  ApoyoNivelRoute: typeof ApoyoNivelRoute
+}
+
+const ApoyoRouteChildren: ApoyoRouteChildren = {
+  ApoyoNivelRoute: ApoyoNivelRoute,
+}
+
+const ApoyoRouteWithChildren = ApoyoRoute._addFileChildren(ApoyoRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApoyoRoute: ApoyoRouteWithChildren,
+  CuentaRoute: CuentaRoute,
   GuiaRoute: GuiaRoute,
+  RedRoute: RedRoute,
+  RespiraRoute: RespiraRoute,
+  SalidaRoute: SalidaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
