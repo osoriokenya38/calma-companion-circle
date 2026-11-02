@@ -88,9 +88,9 @@ function Carousel() {
 }
 
 function ThemeToggle() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
   useEffect(() => {
-    const d = localStorage.getItem("calma-theme") === "dark";
+    const d = localStorage.getItem("calma-theme") !== "light";
     setDark(d);
     document.documentElement.classList.toggle("dark", d);
   }, []);
@@ -113,10 +113,11 @@ function Index() {
     <div className="min-h-screen">
       <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
         <span className="font-display text-2xl text-primary">calma</span>
-        <nav className="flex items-center gap-6 text-sm text-muted-foreground">
-          <a href="#respira" className="hover:text-primary">Respira</a>
-          <a href="#apoyo" className="hover:text-primary">Apoyo</a>
-          <Link to="/guia" className="hover:text-primary">Guía de diseño</Link>
+        <nav className="flex items-center gap-5 text-sm text-muted-foreground">
+          <Link to="/respira" className="hidden hover:text-primary sm:block">Respira</Link>
+          <Link to="/apoyo" className="hidden hover:text-primary sm:block">Apoyo</Link>
+          <Link to="/red" className="hidden hover:text-primary sm:block">Mi red</Link>
+          <Link to="/cuenta" className="hover:text-primary">Mi cuenta</Link>
           <ThemeToggle />
         </nav>
       </header>
@@ -131,7 +132,7 @@ function Index() {
               <button
                 key={m.l}
                 onClick={() => setMood(i)}
-                className={`flex flex-col items-center rounded-2xl border px-4 py-3 transition hover:-translate-y-0.5 ${mood === i ? "border-primary bg-primary text-primary-foreground" : "bg-card"}`}
+                className={`flex flex-col items-center rounded-2xl border px-4 py-3 transition hover:-translate-y-0.5 hover:glow-peach ${mood === i ? "border-primary bg-primary text-primary-foreground glow-mauve" : "border-mauve/30 bg-card"}`}
               >
                 <span className="text-2xl">{m.e}</span>
                 <span className="text-xs">{m.l}</span>
@@ -155,6 +156,9 @@ function Index() {
           <div>
             <h2 className="text-4xl">Respira conmigo</h2>
             <p className="mt-4 max-w-md text-cream/75">Sigue el círculo: inhala mientras crece, exhala mientras se hace pequeño. Un minuto basta.</p>
+            <Link to="/respira" className="mt-6 inline-block rounded-full bg-peach px-8 py-3 font-semibold text-plum-deep transition hover:-translate-y-0.5 glow-peach">
+              Ejercicio guiado de 4 tiempos
+            </Link>
           </div>
           <Breathing />
         </div>
