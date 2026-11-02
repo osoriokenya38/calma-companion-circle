@@ -127,14 +127,15 @@ const groundingSteps = [
 function Grounding() {
   const [step, setStep] = useState(0);
   const done = step >= groundingSteps.length;
+  const gs = groundingSteps[step];
   return (
     <div className="mt-8 rounded-3xl border border-mauve/30 bg-card p-8 text-center shadow-soft">
-      {!done ? (
+      {!done && gs ? (
         <>
           <p className="text-sm text-muted-foreground">Paso {step + 1} de {groundingSteps.length}</p>
-          <p className="mt-4 font-display text-6xl text-mauve">{groundingSteps[step].n}</p>
-          <p className="mt-2 text-xl font-semibold text-foreground">{groundingSteps[step].sense}</p>
-          <p className="mx-auto mt-3 max-w-sm text-sm text-muted-foreground">{groundingSteps[step].hint}</p>
+          <p className="mt-4 font-display text-6xl text-mauve">{gs.n}</p>
+          <p className="mt-2 text-xl font-semibold text-foreground">{gs.sense}</p>
+          <p className="mx-auto mt-3 max-w-sm text-sm text-muted-foreground">{gs.hint}</p>
           <button
             onClick={() => setStep((s) => s + 1)}
             className="mt-6 rounded-full bg-primary px-8 py-3 font-semibold text-primary-foreground transition hover:brightness-110 glow-mauve"

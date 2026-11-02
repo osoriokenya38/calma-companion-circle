@@ -39,7 +39,7 @@ function Respira() {
     return () => clearInterval(id);
   }, [running]);
 
-  const current = phases[phase];
+  const current = phases[phase] ?? phases[0];
 
   return (
     <div className="mx-auto flex min-h-screen max-w-3xl flex-col items-center px-6 py-12">
