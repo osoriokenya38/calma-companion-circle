@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Fraunces", Georgia, serif;
-  --font-sans: "Figtree", system-ui, sans-serif;
+  --font-display: "Outfit", "Segoe UI", sans-serif;
+  --font-sans: "Nunito Sans", system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -40,6 +40,8 @@
   --color-sage: var(--sage);
   --color-sand: var(--sand);
   --color-cream: var(--cream);
+  --color-alert: var(--alert);
+  --color-alert-foreground: var(--alert-foreground);
 }
 
 :root {
@@ -75,6 +77,8 @@
   --border: oklch(0.9 0.02 60);
   --input: oklch(0.9 0.02 60);
   --ring: var(--mauve);
+  --alert: oklch(0.68 0.15 20);          /* #E57373 coral cálido */
+  --alert-foreground: oklch(0.99 0.005 75);
 
   --gradient-dusk: linear-gradient(150deg, var(--plum-soft), var(--plum) 45%, var(--night));
   --gradient-warm: linear-gradient(135deg, var(--sand), var(--peach));
@@ -94,6 +98,9 @@
 @utility bg-dusk { background-image: var(--gradient-dusk); }
 @utility bg-warm { background-image: var(--gradient-warm); }
 @utility shadow-soft { box-shadow: var(--shadow-soft); }
+@utility glow-peach { box-shadow: 0 0 26px color-mix(in oklab, var(--peach) 60%, transparent); }
+@utility glow-mauve { box-shadow: 0 0 26px color-mix(in oklab, var(--mauve) 55%, transparent); }
+@utility glow-alert { box-shadow: 0 0 26px color-mix(in oklab, var(--alert) 55%, transparent); }
 
 @keyframes breathe {
   0%, 100% { transform: scale(0.7); opacity: .75; }
