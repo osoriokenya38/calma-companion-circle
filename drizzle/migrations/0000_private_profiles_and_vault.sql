@@ -1,0 +1,13 @@
+CREATE TABLE public.profiles (id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE, display_name text NOT NULL DEFAULT '', created_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.profiles TO authenticated;
+GRANT ALL ON public.profiles TO service_role;
+ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
+CREATE POLICY profiles_own ON public.profiles FOR ALL TO authenticated USING (auth.uid() = id) WITH CHECK (auth.uid() = id);
+CREATE TABLE public.private_vaults (user_id uuid PRIMARY KEY REFERENCES public.profiles(id) ON DELETE CASCADE, ciphertext text NOT NULL, iv text NOT NULL, updated_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.private_vaults TO authenticated;
+GRANT ALL ON public.private_vaults TO service_role;
+ALTER TABLE public.private_vaults ENABLE ROW LEVEL SECURITY;
+CREATE POLICY vault_own ON public.private_vaults FOR ALL TO authenticated USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+CREATE FUNCTION public.create_calma_profile() RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$ BEGIN INSERT INTO public.profiles(id) VALUES (NEW.id); RETURN NEW; END; $$;
+CREATE TRIGGER calma_profile_signup AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION public.create_calma_profile();
+REVOKE ALL ON FUNCTION public.create_calma_profile() FROM PUBLIC, anon, authenticated;
