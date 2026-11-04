@@ -11,9 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApoyoRouteImport } from './routes/apoyo'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CuentaRouteImport } from './routes/cuenta'
 import { Route as GuiaRouteImport } from './routes/guia'
 import { Route as RedRouteImport } from './routes/red'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RespiraRouteImport } from './routes/respira'
 import { Route as SalidaRouteImport } from './routes/salida'
 import { Route as ApoyoNivelRouteImport } from './routes/apoyo.$nivel'
@@ -26,6 +28,11 @@ const IndexRoute = IndexRouteImport.update({
 const ApoyoRoute = ApoyoRouteImport.update({
   id: '/apoyo',
   path: '/apoyo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CuentaRoute = CuentaRouteImport.update({
@@ -41,6 +48,11 @@ const GuiaRoute = GuiaRouteImport.update({
 const RedRoute = RedRouteImport.update({
   id: '/red',
   path: '/red',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RespiraRoute = RespiraRouteImport.update({
@@ -62,9 +74,11 @@ const ApoyoNivelRoute = ApoyoNivelRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/apoyo': typeof ApoyoRouteWithChildren
+  '/auth': typeof AuthRoute
   '/cuenta': typeof CuentaRoute
   '/guia': typeof GuiaRoute
   '/red': typeof RedRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/respira': typeof RespiraRoute
   '/salida': typeof SalidaRoute
   '/apoyo/$nivel': typeof ApoyoNivelRoute
@@ -72,9 +86,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/apoyo': typeof ApoyoRouteWithChildren
+  '/auth': typeof AuthRoute
   '/cuenta': typeof CuentaRoute
   '/guia': typeof GuiaRoute
   '/red': typeof RedRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/respira': typeof RespiraRoute
   '/salida': typeof SalidaRoute
   '/apoyo/$nivel': typeof ApoyoNivelRoute
@@ -83,9 +99,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/apoyo': typeof ApoyoRouteWithChildren
+  '/auth': typeof AuthRoute
   '/cuenta': typeof CuentaRoute
   '/guia': typeof GuiaRoute
   '/red': typeof RedRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/respira': typeof RespiraRoute
   '/salida': typeof SalidaRoute
   '/apoyo/$nivel': typeof ApoyoNivelRoute
@@ -95,9 +113,11 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/apoyo'
+    | '/auth'
     | '/cuenta'
     | '/guia'
     | '/red'
+    | '/reset-password'
     | '/respira'
     | '/salida'
     | '/apoyo/$nivel'
@@ -105,9 +125,11 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/apoyo'
+    | '/auth'
     | '/cuenta'
     | '/guia'
     | '/red'
+    | '/reset-password'
     | '/respira'
     | '/salida'
     | '/apoyo/$nivel'
@@ -115,9 +137,11 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/apoyo'
+    | '/auth'
     | '/cuenta'
     | '/guia'
     | '/red'
+    | '/reset-password'
     | '/respira'
     | '/salida'
     | '/apoyo/$nivel'
@@ -126,9 +150,11 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApoyoRoute: typeof ApoyoRouteWithChildren
+  AuthRoute: typeof AuthRoute
   CuentaRoute: typeof CuentaRoute
   GuiaRoute: typeof GuiaRoute
   RedRoute: typeof RedRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   RespiraRoute: typeof RespiraRoute
   SalidaRoute: typeof SalidaRoute
 }
@@ -147,6 +173,13 @@ declare module '@tanstack/react-router' {
       path: '/apoyo'
       fullPath: '/apoyo'
       preLoaderRoute: typeof ApoyoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cuenta': {
@@ -168,6 +201,13 @@ declare module '@tanstack/react-router' {
       path: '/red'
       fullPath: '/red'
       preLoaderRoute: typeof RedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/respira': {
@@ -207,9 +247,11 @@ const ApoyoRouteWithChildren = ApoyoRoute._addFileChildren(ApoyoRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApoyoRoute: ApoyoRouteWithChildren,
+  AuthRoute: AuthRoute,
   CuentaRoute: CuentaRoute,
   GuiaRoute: GuiaRoute,
   RedRoute: RedRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   RespiraRoute: RespiraRoute,
   SalidaRoute: SalidaRoute,
 }
