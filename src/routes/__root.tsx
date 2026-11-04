@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { QuickExit } from "../components/QuickExit";
 import { Disclaimer } from "../components/Disclaimer";
 import { BottomBar } from "../components/BottomBar";
+import { CalmaProvider } from "../components/CalmaProvider";
 
 function NotFoundComponent() {
   return (
@@ -130,11 +131,13 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <CalmaProvider>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <Disclaimer />
       <QuickExit />
       <BottomBar />
+      </CalmaProvider>
     </QueryClientProvider>
   );
 }
