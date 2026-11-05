@@ -5,6 +5,11 @@ export const Route = createFileRoute("/salida")({
   head: () => ({
     meta: [
       { title: "Calculadora" },
+      { name: "description", content: "Calculadora de operaciones básicas." },
+      { property: "og:title", content: "Calculadora" },
+      { property: "og:description", content: "Calculadora de operaciones básicas." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex" },
     ],
   }),

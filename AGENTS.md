@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep situation-specific support guidance in the support detail configuration and render shared information sections from it, so every situation receives consistent professional-help and accompaniment content without changing other pages.
