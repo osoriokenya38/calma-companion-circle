@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useLocation } from "@tanstack/react-router";
 import { ShieldAlert, Heart, LifeBuoy, MessagesSquare, Wind } from "lucide-react";
 
 export const Route = createFileRoute("/apoyo")({
@@ -24,6 +24,8 @@ const levels = [
 ];
 
 function Apoyo() {
+  const { pathname } = useLocation();
+  if (pathname !== "/apoyo" && pathname !== "/apoyo/") return <Outlet />;
   return (
     <div className="mx-auto max-w-4xl px-6 py-12">
       <Link to="/" className="text-sm text-muted-foreground hover:text-primary">← Volver al inicio</Link>
@@ -60,6 +62,7 @@ function Apoyo() {
       <p className="mt-10 rounded-2xl bg-sand p-5 text-sm text-muted-foreground">
         Si estás en peligro inmediato, llama al <a href="tel:911" className="font-semibold text-alert">911</a> ahora. Calma es acompañamiento, no sustituye la atención profesional.
       </p>
+      <Outlet />
     </div>
   );
 }
