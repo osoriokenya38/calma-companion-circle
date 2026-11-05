@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { EyeOff, Leaf, LockKeyhole, Eye, ArrowLeft } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useCalma } from '@/components/CalmaProvider';
@@ -15,6 +15,7 @@ function Auth() {
   const [email, setEmail] = useState(''); const [password, setPassword] = useState('');
   const [show, setShow] = useState(false); const [busy, setBusy] = useState(false); const [message, setMessage] = useState('');
   const { user, signOut, ready } = useCalma(); const navigate = useNavigate();
+  useEffect(() => { if (new URLSearchParams(window.location.search).get('modo') === 'registro') setMode('signup'); }, []);
   const submit = async (e: FormEvent) => {
     e.preventDefault(); setMessage(''); setBusy(true);
     try {
