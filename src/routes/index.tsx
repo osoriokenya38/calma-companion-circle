@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { CloudRain, Activity, Minus, Leaf, Sun, Moon, ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import hero from "@/assets/hero-calma.jpg";
 import s1 from "@/assets/slide-1.jpg";
 import s2 from "@/assets/slide-2.jpg";
@@ -12,17 +14,19 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Registra tu ánimo, respira con calma y encuentra contactos de apoyo." },
       { property: "og:title", content: "Calma — Respira, conecta y pide ayuda" },
       { property: "og:description", content: "Registra tu ánimo, respira con calma y encuentra contactos de apoyo." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Index,
 });
 
 const moods = [
-  { e: "😔", l: "Triste", msg: "Está bien no estar bien. Habla con alguien de confianza o llama a una línea de apoyo." },
-  { e: "😟", l: "Ansioso", msg: "Probemos respirar juntos un minuto. Tu cuerpo sabe calmarse." },
-  { e: "😐", l: "Neutral", msg: "Un pequeño paseo o un vaso de agua pueden cambiar tu día." },
-  { e: "🙂", l: "Bien", msg: "¡Qué bueno! Anota qué te ayudó hoy para recordarlo." },
-  { e: "😊", l: "Feliz", msg: "Comparte esa energía con alguien que quieras." },
+  { icon: CloudRain, l: "Triste", msg: "Está bien no estar bien. Habla con alguien de confianza o llama a una línea de apoyo." },
+  { icon: Activity, l: "Ansioso", msg: "Probemos respirar juntos un minuto. Tu cuerpo sabe calmarse." },
+  { icon: Minus, l: "Neutral", msg: "Un pequeño paseo o un vaso de agua pueden cambiar tu día." },
+  { icon: Leaf, l: "Bien", msg: "¡Qué bueno! Anota qué te ayudó hoy para recordarlo." },
+  { icon: Sun, l: "Feliz", msg: "Comparte esa energía con alguien que quieras." },
 ];
 
 const contacts = [
@@ -75,8 +79,8 @@ function Carousel() {
             </div>
           ))}
         </div>
-        <button aria-label="Anterior" onClick={() => go(-1)} className="absolute left-4 top-1/2 h-11 w-11 -translate-y-1/2 rounded-full bg-cream/80 text-xl text-night backdrop-blur hover:bg-cream">‹</button>
-        <button aria-label="Siguiente" onClick={() => go(1)} className="absolute right-4 top-1/2 h-11 w-11 -translate-y-1/2 rounded-full bg-cream/80 text-xl text-night backdrop-blur hover:bg-cream">›</button>
+        <Button variant="ghost" size="icon" aria-label="Anterior" title="Anterior" onClick={() => go(-1)} className="absolute left-4 top-1/2 h-11 w-11 -translate-y-1/2 rounded-full bg-cream/80 text-xl text-night backdrop-blur hover:bg-cream"><ChevronLeft aria-hidden /></Button>
+        <Button variant="ghost" size="icon" aria-label="Siguiente" title="Siguiente" onClick={() => go(1)} className="absolute right-4 top-1/2 h-11 w-11 -translate-y-1/2 rounded-full bg-cream/80 text-xl text-night backdrop-blur hover:bg-cream"><ChevronRight aria-hidden /></Button>
         <div className="absolute bottom-5 right-8 flex gap-2">
           {slides.map((s, k) => (
             <button key={s.t} aria-label={`Ir al dato ${k + 1}`} onClick={() => setI(k)} className={`h-2.5 rounded-full transition-all ${k === i ? "w-8 bg-cream" : "w-2.5 bg-cream/50"}`} />
@@ -101,9 +105,9 @@ function ThemeToggle() {
     localStorage.setItem("calma-theme", d ? "dark" : "light");
   };
   return (
-    <button onClick={toggle} aria-label={dark ? "Activar modo claro" : "Activar modo oscuro"} className="flex h-10 w-10 items-center justify-center rounded-full border bg-card text-lg transition hover:-translate-y-0.5">
-      {dark ? "☀️" : "🌙"}
-    </button>
+    <Button variant="ghost" size="icon" onClick={toggle} title={dark ? "Activar modo claro" : "Activar modo oscuro"} aria-label={dark ? "Activar modo claro" : "Activar modo oscuro"} className="flex h-10 w-10 items-center justify-center rounded-full border bg-card text-lg transition hover:-translate-y-0.5">
+      {dark ? <Sun aria-hidden /> : <Moon aria-hidden />}
+    </Button>
   );
 }
 
@@ -129,14 +133,15 @@ function Index() {
           <p className="mt-5 max-w-md text-lg text-muted-foreground">Un espacio tranquilo para escucharte, respirar y encontrar a quien pueda acompañarte.</p>
           <div className="mt-8 flex flex-wrap gap-2">
             {moods.map((m, i) => (
-              <button
+              <Button variant="ghost"
                 key={m.l}
                 onClick={() => setMood(i)}
-                className={`flex flex-col items-center rounded-2xl border px-4 py-3 transition hover:-translate-y-0.5 hover:glow-peach ${mood === i ? "border-primary bg-primary text-primary-foreground glow-mauve" : "border-mauve/30 bg-card"}`}
+                aria-pressed={mood === i}
+                className={`flex h-auto flex-col items-center gap-0 rounded-2xl border px-4 py-3 transition hover:-translate-y-0.5 hover:glow-peach ${mood === i ? "border-primary bg-primary text-primary-foreground glow-mauve" : "border-mauve/30 bg-card"}`}
               >
-                <span className="text-2xl">{m.e}</span>
+                <m.icon className="mb-1 !h-6 !w-6" strokeWidth={1.5} aria-hidden />
                 <span className="text-xs">{m.l}</span>
-              </button>
+              </Button>
             ))}
           </div>
           {mood !== null && (
