@@ -26,6 +26,7 @@ function hashPin(pin: string) {
 }
 
 function Cuenta() {
+  const { user, signOut } = useCalma();
   const [hasPin, setHasPin] = useState(false);
   const [pin, setPin] = useState("");
   const [msg, setMsg] = useState("");
