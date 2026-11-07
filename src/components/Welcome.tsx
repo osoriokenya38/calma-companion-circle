@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link, useLocation } from "@tanstack/react-router";
-import { Leaf, LogIn, UserPlus, EyeOff, LockKeyhole, ArrowRight } from "lucide-react";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
+import { Leaf, LogIn, UserPlus, EyeOff, LockKeyhole, ArrowRight, DoorOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCalma } from "./CalmaProvider";
 
@@ -8,8 +8,10 @@ import { useCalma } from "./CalmaProvider";
 export function Welcome() {
   const { user, ready } = useCalma();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const [entered, setEntered] = useState(false);
   const enter = () => setEntered(true);
+  const salir = () => navigate({ to: "/salida" });
   if (!ready || entered || pathname === "/auth" || pathname === "/reset-password") return null;
   return (
     <div role="dialog" aria-modal="true" aria-labelledby="welcome-title" className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto bg-background px-6 py-10">
