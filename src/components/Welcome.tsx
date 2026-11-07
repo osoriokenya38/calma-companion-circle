@@ -40,6 +40,15 @@ export function Welcome() {
             </>
           )}
         </div>
+        <button
+          type="button"
+          onClick={salir}
+          title="Salir de la aplicación"
+          className="mx-auto mt-5 flex items-center gap-2 rounded-full border border-mauve/30 px-5 py-2.5 text-sm text-muted-foreground transition hover:-translate-y-0.5 hover:text-foreground"
+        >
+          <DoorOpen className="size-4" aria-hidden />
+          Salir
+        </button>
         <p className="mt-6 flex gap-2 text-left text-xs leading-relaxed text-muted-foreground">
           <LockKeyhole className="mt-0.5 size-4 shrink-0" />Con una cuenta, tus contactos y registros se guardan cifrados. Sin cuenta, nada queda asociado a ti.
         </p>
