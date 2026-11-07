@@ -1,3 +1,4 @@
+import type React from 'react';
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import { useNavigate, useRouter } from '@tanstack/react-router';
 import { useQueryClient } from '@tanstack/react-query';
@@ -12,7 +13,9 @@ interface CalmaState {
   updateVault: (next: Vault) => Promise<boolean>;
   signOut: () => Promise<void>; clearGuest: () => void;
 }
-const CalmaContext = createContext<CalmaState | null>(null);
+// Keep a single context identity across hot reloads so consumers never lose the provider.
+const globalForCalma = globalThis as unknown as { __calmaContext?: React.Context<CalmaState | null> };
+const CalmaContext = (globalForCalma.__calmaContext ??= createContext<CalmaState | null>(null));
 export function CalmaProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [ready, setReady] = useState(false);
