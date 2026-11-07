@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link, useLocation } from "@tanstack/react-router";
-import { Leaf, LogIn, UserPlus, EyeOff, LockKeyhole, ArrowRight } from "lucide-react";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
+import { Leaf, LogIn, UserPlus, EyeOff, LockKeyhole, ArrowRight, DoorOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCalma } from "./CalmaProvider";
 
@@ -8,9 +8,11 @@ import { useCalma } from "./CalmaProvider";
 export function Welcome() {
   const { user, ready } = useCalma();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const [entered, setEntered] = useState(false);
   const enter = () => setEntered(true);
-  if (!ready || entered || pathname === "/auth" || pathname === "/reset-password") return null;
+  const salir = () => navigate({ to: "/salida" });
+  if (!ready || entered || pathname === "/auth" || pathname === "/reset-password" || pathname === "/salida") return null;
   return (
     <div role="dialog" aria-modal="true" aria-labelledby="welcome-title" className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto bg-background px-6 py-10">
       <div className="w-full max-w-md text-center">
@@ -38,6 +40,15 @@ export function Welcome() {
             </>
           )}
         </div>
+        <button
+          type="button"
+          onClick={salir}
+          title="Salir de la aplicación"
+          className="mx-auto mt-5 flex items-center gap-2 rounded-full border border-mauve/30 px-5 py-2.5 text-sm text-muted-foreground transition hover:-translate-y-0.5 hover:text-foreground"
+        >
+          <DoorOpen className="size-4" aria-hidden />
+          Salir
+        </button>
         <p className="mt-6 flex gap-2 text-left text-xs leading-relaxed text-muted-foreground">
           <LockKeyhole className="mt-0.5 size-4 shrink-0" />Con una cuenta, tus contactos y registros se guardan cifrados. Sin cuenta, nada queda asociado a ti.
         </p>
