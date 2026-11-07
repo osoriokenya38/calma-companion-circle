@@ -76,9 +76,7 @@ export function CalmaProvider({ children }: { children: ReactNode }) {
     const { error: signOutError } = await supabase.auth.signOut();
     if (signOutError) { setError('No se pudo cerrar la sesión. Inténtalo de nuevo.'); return; }
     identity.current = null; setUser(null); setVault(emptyVault());
-    await navigate({ to: '/', replace: true });
-    // Full reload resets the in-memory welcome screen so it shows again.
-    window.location.reload();
+    await navigate({ to: '/auth', replace: true });
   };
   return <CalmaContext.Provider value={{ user, ready, busy, error, vault, updateVault, signOut, clearGuest: () => setVault(emptyVault()) }}>{children}</CalmaContext.Provider>;
 }
