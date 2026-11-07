@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { EyeOff, KeyRound, Trash2 } from "lucide-react";
+import { EyeOff, KeyRound, LogOut, Trash2 } from "lucide-react";
+import { useCalma } from "@/components/CalmaProvider";
 
 export const Route = createFileRoute("/cuenta")({
   head: () => ({
