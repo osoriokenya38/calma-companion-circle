@@ -1,17 +1,36 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "@tanstack/react-router";
-import { Leaf, LogIn, UserPlus, EyeOff, LockKeyhole, ArrowRight, DoorOpen } from "lucide-react";
+import { Leaf, LogIn, UserPlus, EyeOff, LockKeyhole, ArrowRight, DoorOpen, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCalma } from "./CalmaProvider";
 
 // Shown every time the app is opened (state lives only in memory, so each load starts here).
 export function Welcome() {
-  const { user, ready } = useCalma();
+  const { user, ready, signOut } = useCalma();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [entered, setEntered] = useState(false);
   const enter = () => setEntered(true);
   const salir = () => navigate({ to: "/salida" });
+  const cerrarSesion = async () => {
+    await signOut();
+    setEntered(false);
+    navigate({ to: "/", replace: true });
+  };
+  const hidden = pathname === "/auth" || pathname === "/reset-password" || pathname === "/salida";
+  if (ready && entered && user && !hidden) {
+    return (
+      <button
+        type="button"
+        onClick={() => void cerrarSesion()}
+        title="Cerrar sesión y volver al registro"
+        aria-label="Cerrar sesión"
+        className="fixed right-4 top-40 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-mauve/40 bg-card text-muted-foreground shadow-soft transition hover:scale-105 hover:text-foreground"
+      >
+        <LogOut className="size-5" aria-hidden />
+      </button>
+    );
+  }
   if (!ready || entered || pathname === "/auth" || pathname === "/reset-password" || pathname === "/salida") return null;
   return (
     <div role="dialog" aria-modal="true" aria-labelledby="welcome-title" className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto bg-background px-6 py-10">
