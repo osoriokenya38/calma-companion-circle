@@ -1,36 +1,81 @@
-# Calma Companion Circle
+# Calma 🌸
 
-Actúa como un rol de experto en diseño de aplicaciones 
+> Un espacio privado, seguro y cálido diseñado específicamente para mujeres, enfocado en la contención emocional, la psicoeducación, ejercicios de calma y la búsqueda de redes de apoyo ante situaciones de crisis o violencia.
 
-ayudame a generar y maquetar una plataforma/aplicacion , te doy la paleta que me gusta:
-#48316D
-#A387A8
-#251447
-#5E3F87
-#1B0C34
-#230C45
-Dame tipografias atractivas visualmente.
-dame los colores que no hagan ruido visualmente que sean calidos y fuentes que se pueden utilizar asi como las mejores recomendaciones sobre ubicacion de imagenes y formas o botones, toma en cuenta que esta app es  sobre la salud mental, busqueda de ayuda, contactos de apoyo y en general interactiva y agradable
+---
 
-This project was built with [Lovable](https://lovable.dev).
+## Propósito del Proyecto
 
-**Live app**: https://calma-companion-circle.lovable.app
+**Calma** nace como una respuesta digital de acompañamiento temprano y contención para mujeres que atraviesan momentos de vulnerabilidad, crisis de ansiedad, depresión, o distintas formas de violencia (física, psicológica, sexual o de control). La plataforma busca ser un puente accesible, libre de juicios y enfocado en la protección de los derechos y la integridad de las usuarias, recordando siempre que **no están solas**.
 
-## Build with Lovable
+---
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/429af21d-2f09-487a-8b5d-3eeb60bff59b).
+## Características Principales
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+* **Modo Oscuro Cálido:** Interfaz diseñada con una paleta de tonos morados profundos y acentos en durazno suave y malva para evitar la fatiga visual y ofrecer un entorno visualmente reconfortante.
+* **Diseño Libre de Emojis:** Iconografía vectorial formal, minimalista y sobria en toda la plataforma para garantizar un estándar profesional y respetuoso.
+* **Pantalla de Acceso Dual:**
+  * **Con Cuenta:** Permite iniciar sesión o registrarse para resguardar de forma cifrada el historial de estados de ánimo y la gestión de la red de apoyo personal.
+  * **Uso Sin Registro (Modo Incógnito):** Acceso inmediato y libre a todas las herramientas de calma y apoyo sin almacenar datos personales ni dejar rastro en el dispositivo.
+* **Medidor Dinámico de Sentimientos:** Herramienta interactiva en la página principal con efectos de destello visual (*glow*) para registrar el estado emocional actual y ofrecer derivación asistida a apartados de ayuda.
+* **Apartados de Situaciones (Sin Jerarquías de Riesgo):** Módulos informativos independientes que incluyen datos claros, ejercicios prácticos y líneas de ayuda directa para:
+  * Violencia Física o Riesgo Inminente (con protocolo de resguardo y acceso a refugios).
+  * Agresión o Violencia Sexual.
+  * Violencia Psicológica, Emocional y Control (Gaslighting).
+  * Ansiedad y Pánico (con técnica guiada de arraigo 5-4-3-2-1).
+  * Depresión y Desesperanza.
+  * Pensamientos de Autolesión (con técnica TIPP).
+* **Módulo "Respira":** Animación interactiva en tiempo real con un círculo expansible y contraíble en 4 tiempos para la regulación del sistema nervioso.
+* **Red de Sororidad (Contactos de Confianza):** Apartado para configurar contactos de emergencia estructurados (**Nombre**, **Primer Apellido**, **Segundo Apellido** y validación estricta de teléfono a **10 dígitos**).
+* **Botón de Salida Rápida (*Quick Exit*):** Botón flotante accesible en todo momento que oculta la aplicación de inmediato y la reemplaza por una pantalla neutra (como una calculadora) para proteger la seguridad física de la usuaria.
 
-## Development
+---
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Sistema de Diseño y Paleta de Colores
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+La plataforma cuida cada detalle estético y de accesibilidad utilizando la siguiente paleta cromática basada en tonos cálidos y orgánicos:
+
+| Elemento / Propósito | Color / Código Hex | Descripción |
+| :--- | :--- | :--- |
+| **Fondo Principal** | `#1B0C34` | Morado ultra oscuro que garantiza descanso visual. |
+| **Superficies y Tarjetas** | `#230C45` / `#251447` | Tonos de elevación para estructurar la información. |
+| **Bordes y Divisores** | `#5E3F87` | Líneas sutiles (con opacidad controlada). |
+| **Acentos Cálidos (CTAs)** | `#F2C9B0` | Crema/Durazno suave para transmitir cercanía humana. |
+| **Acento Secundario** | `#A387A8` | Malva sereno para etiquetas e iconografía. |
+| **Texto Principal** | `#F7F4F9` | Blanco cálido de alta legibilidad. |
+| **Alertas / Urgencias** | `#E57373` | Coral cálido para llamadas a la acción críticas. |
+
+* **Tipografía de Títulos:** `Plus Jakarta Sans` o `Outfit` (con acentos sutiles en cursiva).
+* **Tipografía de Cuerpo:** `Inter` o `Nunito Sans`.
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+*(Actualiza esta sección según el stack tecnológico con el que desarrollaste la aplicación en Lovable, por ejemplo: React, Tailwind CSS, Vite, TypeScript, Supabase, etc.)*
+
+* **Frontend:** React / Vite / Tailwind CSS
+* **Estilos y Componentes:** Lucide Icons / Iconografía vectorial formal.
+* **Despliegue:** [Lovable](https://lovable.dev/) / Vercel
+
+---
+
+## Uso del Proyecto
+
+Puedes visitar la versión en vivo de la aplicación aquí:  
+🔗 [https://calma-mujeres.lovable.app/](https://calma-mujeres.lovable.app/)
+
+Si deseas clonar y ejecutar el repositorio de manera local:
+
+```bash
+# Clona el repositorio
+git clone [https://github.com/tu-usuario/calma.git](https://github.com/tu-usuario/calma.git)
+
+# Entra al directorio del proyecto
+cd calma
+
+# Instala las dependencias
+npm install
+
+# Inicia el servidor de desarrollo
 npm run dev
-```
