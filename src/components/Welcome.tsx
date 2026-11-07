@@ -12,7 +12,7 @@ export function Welcome() {
   const [entered, setEntered] = useState(false);
   const enter = () => setEntered(true);
   const salir = () => navigate({ to: "/salida" });
-  if (!ready || entered || pathname === "/auth" || pathname === "/reset-password") return null;
+  if (!ready || entered || pathname === "/auth" || pathname === "/reset-password" || pathname === "/salida") return null;
   return (
     <div role="dialog" aria-modal="true" aria-labelledby="welcome-title" className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto bg-background px-6 py-10">
       <div className="w-full max-w-md text-center">
