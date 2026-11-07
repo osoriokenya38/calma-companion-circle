@@ -130,6 +130,20 @@ function Cuenta() {
           </button>
         </section>
 
+        {user && (
+          <section className="rounded-3xl border border-mauve/30 bg-card p-6 shadow-soft">
+            <h2 className="flex items-center gap-2 text-xl font-semibold text-foreground">
+              <LogOut className="h-5 w-5 text-primary" /> Cerrar sesión
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Estás dentro como <strong className="text-foreground">{user.email}</strong>. Al salir volverás a la pantalla de bienvenida, donde puedes crear otra cuenta o ingresar sin cuenta.
+            </p>
+            <button onClick={() => void signOut()} className="mt-4 inline-flex items-center gap-2 rounded-full border border-mauve/40 px-6 py-3 text-sm font-medium text-foreground transition hover:-translate-y-0.5">
+              <LogOut className="h-4 w-4" /> Salir de mi cuenta
+            </button>
+          </section>
+        )}
+
         {msg && <p className="rounded-2xl bg-sage/60 p-4 text-sm text-foreground">{msg}</p>}
       </div>
     </div>
